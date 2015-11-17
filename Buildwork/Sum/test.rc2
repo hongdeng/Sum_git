@@ -1,0 +1,52 @@
+
+// File which should be manually edited to configure the
+// DLL properties. Note that the version string is defined
+// by a Script whose format is similar to the C#
+// To change the build version, please edit build_ver.h
+#ifdef FORMAL_RELEASE
+  #define BUILD_VERSION_ID 12, 23, 44, 555
+  #define BUILD_VERSION_STR "12.23.44.555"
+#else //Informal, developer release
+  #include "auto_build_ver.h"
+#endif
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Version
+//
+
+VS_VERSION_INFO VERSIONINFO
+ FILEVERSION BUILD_VERSION_ID
+ PRODUCTVERSION BUILD_VERSION_ID
+ FILEFLAGSMASK 0x3fL
+#ifdef _DEBUG
+ FILEFLAGS 0x1L
+#else
+ FILEFLAGS 0x0L
+#endif
+ FILEOS 0x40004L
+ FILETYPE 0x2L
+ FILESUBTYPE 0x0L
+BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
+        BLOCK "000004b0"
+        BEGIN
+            VALUE "CompanyName", "Keysight Technologies"
+            VALUE "FileDescription", "RrcEncDec"
+            VALUE "FileVersion", BUILD_VERSION_STR
+            VALUE "InternalName", "RrcEncDec"
+            VALUE "LegalCopyright", "© Keysight Technologies 2013-2015"
+            VALUE "OriginalFilename", "RrcEncDec.dll"
+            VALUE "ProductName", "E7530A/E7630A LTE/LTE-A Application"
+            VALUE "ProductVersion", BUILD_VERSION_STR
+        END
+    END
+    BLOCK "VarFileInfo"
+    BEGIN
+        VALUE "Translation", 0x0, 1200
+    END
+END
+
+/////////////////////////////////////////////////////////////////////////////

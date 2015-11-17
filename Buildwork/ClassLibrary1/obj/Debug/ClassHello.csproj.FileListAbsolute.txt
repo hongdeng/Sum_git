@@ -1,0 +1,9 @@
+D:\SandBox\Sandbox\hongdeng\BuildWork\ClassLibrary1\bin\Debug\ClassLibrary1.dll
+D:\SandBox\Sandbox\hongdeng\BuildWork\ClassLibrary1\bin\Debug\ClassLibrary1.pdb
+D:\SandBox\Sandbox\hongdeng\BuildWork\ClassLibrary1\obj\Debug\ClassLibrary1.dll
+D:\SandBox\Sandbox\hongdeng\BuildWork\ClassLibrary1\obj\Debug\ClassLibrary1.pdb
+D:\Software\Jenkins\.jenkins\jobs\Sum_Git\workspace\BuildWork\ClassLibrary1\bin\Debug\ClassLibrary1.dll
+D:\Software\Jenkins\.jenkins\jobs\Sum_Git\workspace\BuildWork\ClassLibrary1\bin\Debug\ClassLibrary1.pdb
+D:\Software\Jenkins\.jenkins\jobs\Sum_Git\workspace\BuildWork\ClassLibrary1\obj\Debug\ClassHello.csprojResolveAssemblyReference.cache
+D:\Software\Jenkins\.jenkins\jobs\Sum_Git\workspace\BuildWork\ClassLibrary1\obj\Debug\ClassLibrary1.dll
+D:\Software\Jenkins\.jenkins\jobs\Sum_Git\workspace\BuildWork\ClassLibrary1\obj\Debug\ClassLibrary1.pdb

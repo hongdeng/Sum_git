@@ -1,0 +1,172 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!-- DO NOT EDIT the project element - the ToolsVersion specified here does not prevent the solutions 
+     and projects in the SolutionToBuild item group from targeting other versions of the .NET framework. 
+     -->
+<Project DefaultTargets="DesktopBuild" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="3.5">
+  <!-- Do not edit this -->
+  <Import Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\TeamBuild\Microsoft.TeamFoundation.Build.targets" />
+
+  <ProjectExtensions>
+    <!-- Team Foundation Build Version - DO NOT CHANGE -->
+    <ProjectFileVersion>2</ProjectFileVersion>
+  </ProjectExtensions>
+
+  <PropertyGroup>
+    <!-- These properties are included only for backwards compatibility.-->
+    <TeamProject>Sandbox</TeamProject>
+    <BuildDirectoryPath>UNKNOWN</BuildDirectoryPath>
+    <DropLocation>\\UNKNOWN\drops</DropLocation>
+
+      <!-- Tell TeamBuild to not create a Work Item if a build fails. -->
+      <SkipWorkItemCreation>true</SkipWorkItemCreation>
+
+      <!-- Tell TeamBuild to treat test errors as build errors, not warnings. -->
+      <TreatTestFailureAsBuildFailure>true</TreatTestFailureAsBuildFailure>
+
+      <!-- We'll execute the UTs ourselves from a custom target -->
+    <RunTest>true</RunTest>
+
+    <!--  CODE ANALYSIS
+     Set this property to enable/disable running code analysis. Valid values for this property are 
+     Default, Always and Never.
+
+         Default - Perform code analysis as per the individual project settings
+         Always  - Always perform code analysis irrespective of project settings
+         Never   - Never perform code analysis irrespective of project settings
+     -->
+    <RunCodeAnalysis>Default</RunCodeAnalysis>
+
+    <!--  WorkItem information.  These fields are used when a build fails for populating a work item.
+      Since we (TSO-ES) don't use WorkItems we really don't care about these fields yet.-->
+    <WorkItemType>Bug</WorkItemType>
+    <WorkItemFieldValues>System.Reason=Build Failure;System.Description=Start the build using Team Build</WorkItemFieldValues>
+    <WorkItemTitle>Build failure in build:</WorkItemTitle>
+    <DescriptionText>This work item was created by Team Build on a build failure.</DescriptionText>
+    <BuildlogText>The build log file is at:</BuildlogText>
+    <ErrorWarningLogText>The errors/warnings log file is at:</ErrorWarningLogText>
+    <UpdateAssociatedWorkItems>true</UpdateAssociatedWorkItems>
+
+    <!-- Additional Properties -->
+    <AdditionalVCOverrides></AdditionalVCOverrides>
+    <CustomPropertiesForClean></CustomPropertiesForClean>
+    <CustomPropertiesForBuild></CustomPropertiesForBuild>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <!--  SOLUTIONS
+     The paths of the solutions to build. Paths can be server paths or local paths, but server paths
+     relative to the location of this file are highly recommended.  To add/delete solutions, edit this 
+     ItemGroup. For example, to add a solution MySolution.sln, add the following line:
+         
+         <SolutionToBuild Include="$(BuildProjectFolderPath)/path/MySolution.sln" />
+
+     To change the order in which the solutions are built, modify the order in which the solutions 
+     appear below.
+     
+     To call a target (or targets) other than the default, add a metadata item named Targets.  To pass 
+     custom properties to the solution, add a metadata item named Properties.  For example, to call 
+     the targets MyCustomTarget1 and MyCustomTarget2, passing in properties Property1 and Property2, 
+     add the following:
+         
+         <SolutionToBuild Include="$(BuildProjectFolderPath)/path/MySolution.sln">
+             <Targets>MyCustomTarget1;MyCustomTarget2</Targets>
+             <Properties>Property1=Value1;Property2=Value2</Properties>
+         </SolutionToBuild>
+    -->
+      <SolutionToBuild Include="$(SolutionRoot)\TestTemplate.sln" 
+                       Condition=" $(Flavor) == 'Release' ">
+      </SolutionToBuild>
+   
+      <SolutionToBuild Include="$(SolutionRoot)\SLN2\Solution2.sln"
+                       Condition=" $(Flavor) == 'Release' ">
+      </SolutionToBuild>
+    
+      <SolutionToBuild Include="$(SolutionRoot)\SLN4\ClassLibrary4.sln"
+                       Condition=" $(Flavor) == 'Release' ">
+      </SolutionToBuild>
+
+
+  </ItemGroup>
+
+  <ItemGroup>
+    <!--  CONFIGURATIONS
+     The list of configurations to build. To add/delete configurations, edit this value. For example, 
+     to add a new configuration, add the following lines:
+         
+         <ConfigurationToBuild Include="Debug|x86">
+             <FlavorToBuild>Debug</FlavorToBuild>
+             <PlatformToBuild>x86</PlatformToBuild>
+         </ConfigurationToBuild>
+
+     The Include attribute value should be unique for each ConfigurationToBuild node.
+    -->
+    <ConfigurationToBuild Include="Release|Any CPU">
+      <FlavorToBuild>Release</FlavorToBuild>
+      <PlatformToBuild>Any CPU</PlatformToBuild>
+    </ConfigurationToBuild>
+    
+    <ConfigurationToBuild Include="Release|Win32">
+      <FlavorToBuild>Release</FlavorToBuild>
+      <PlatformToBuild>Win32</PlatformToBuild>
+    </ConfigurationToBuild>
+
+
+
+  </ItemGroup>
+
+  <ItemGroup>
+    <!--  ADDITIONAL REFERENCE PATH
+   The list of additional reference paths to use while resolving references. For example:
+   
+       <AdditionalReferencePath Include="C:\MyFolder\" />
+       <AdditionalReferencePath Include="C:\MyFolder2\" />
+  -->
+
+    <!-- Necessary to pick up the Microsoft.VisualStudio.SmartDevice.UnitTestFramework.dll assembly -->
+  </ItemGroup>
+
+    <ItemGroup>
+        <!--  TEST ARGUMENTS
+     If the RunTest property is set to true then the following test arguments will be used to run 
+     tests. Tests can be run by specifying one or more test lists and/or one or more test containers.
+     
+     To run tests using test lists, add MetaDataFile items and associated TestLists here.  Paths can 
+     be server paths or local paths, but server paths relative to the location of this file are highly 
+     recommended:
+     
+        <MetaDataFile Include="$(BuildProjectFolderPath)/HelloWorld/HelloWorld.vsmdi">
+            <TestList>BVT1;BVT2</TestList>
+        </MetaDataFile>
+
+     To run tests using test containers, add TestContainer items here:
+     
+        <TestContainer Include="$(OutDir)\HelloWorldTests.dll" />
+        <TestContainer Include="$(SolutionRoot)\TestProject\WebTest1.webtest" />
+        <TestContainer Include="$(SolutionRoot)\TestProject\LoadTest1.loadtest" />
+
+     Use %2a instead of * and %3f instead of ? to prevent expansion before test assemblies are built
+    -->
+
+     
+    </ItemGroup>
+
+    <PropertyGroup>
+        <!-- TEST ARGUMENTS
+     If the RunTest property is set to true, then particular tests within a
+     metadata file or test container may be specified here.  This is
+     equivalent to the /test switch on mstest.exe.
+
+     <TestNames>BVT;HighPriority</TestNames>
+        <RunConfigFile>$(SolutionRoot)\Local.testsettings</RunConfigFile>
+    -->
+    </PropertyGroup>
+
+    <!-- No condition on this import; we always want to pick up the common build tasks. 
+       Import them once here. Can then use them in each of the project target files. 
+       Not totally intuitive when calling common tasks in the target files and you don't have
+       an import statement at the top. -->
+
+  <Import Project="Common.targets"/>
+
+  
+</Project>

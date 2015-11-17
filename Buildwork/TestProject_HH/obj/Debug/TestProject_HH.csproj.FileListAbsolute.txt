@@ -1,0 +1,10 @@
+D:\SandBox\Sandbox\hongdeng\BuildWork\TestProject_HH\bin\Debug\TestProject_HH.dll
+D:\SandBox\Sandbox\hongdeng\BuildWork\TestProject_HH\bin\Debug\TestProject_HH.pdb
+D:\SandBox\Sandbox\hongdeng\BuildWork\TestProject_HH\obj\Debug\TestProject_HH.csprojResolveAssemblyReference.cache
+D:\SandBox\Sandbox\hongdeng\BuildWork\TestProject_HH\obj\Debug\TestProject_HH.dll
+D:\SandBox\Sandbox\hongdeng\BuildWork\TestProject_HH\obj\Debug\TestProject_HH.pdb
+D:\Software\Jenkins\.jenkins\jobs\Sum_Git\workspace\BuildWork\TestProject_HH\bin\Debug\TestProject_HH.dll
+D:\Software\Jenkins\.jenkins\jobs\Sum_Git\workspace\BuildWork\TestProject_HH\bin\Debug\TestProject_HH.pdb
+D:\Software\Jenkins\.jenkins\jobs\Sum_Git\workspace\BuildWork\TestProject_HH\obj\Debug\TestProject_HH.csprojResolveAssemblyReference.cache
+D:\Software\Jenkins\.jenkins\jobs\Sum_Git\workspace\BuildWork\TestProject_HH\obj\Debug\TestProject_HH.dll
+D:\Software\Jenkins\.jenkins\jobs\Sum_Git\workspace\BuildWork\TestProject_HH\obj\Debug\TestProject_HH.pdb

@@ -1,0 +1,570 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Scenario User="sweeney" ModifiedDate="4/2/2015 9:01:04 AM" CreationDate="4/2/2015 9:00:08 AM" CreatedBy="hongdeng" FusionVersion="4.0.3.0" PathMode="Unchanged">
+  <!--Test Property Cache-->
+  <PropertyCache />
+  <!--Global Parameters-->
+  <Parameters>
+    <Parameter Key="Description" Type="System.String" Category="Product Development Information" Locked="True">
+      <Description>A short description of this scenario</Description>
+    </Parameter>
+    <Parameter Key="Platform" Type="System.String" Category="Product Development Information" Locked="True">
+      <Description>The name of the platform</Description>
+    </Parameter>
+    <Parameter Key="Division" Type="System.String" Category="Product Development Information" Locked="True">
+      <Description>The name of the Division</Description>
+    </Parameter>
+    <Parameter Key="Product" Type="System.String" Category="Product Development Information" Locked="True">
+      <Description>The name of the product under test</Description>
+    </Parameter>
+    <Parameter Key="BuildNumber" Type="System.String" Category="Team Build Information" Locked="True">
+      <Description>Team Build Number associated with this test run.</Description>
+    </Parameter>
+  </Parameters>
+  <!--Variable Profile Path-->
+  <Variables ActiveProfile="C:\Program Files\Keysight\Fusion 4\Templates\DefaultVariables.fvxml" />
+  <!--HTML Report Definitions-->
+  <ReportManager>
+    <ReportSettings Name="Run Start">
+      <Title>Fusion Run Start: %d.%t on %s</Title>
+      <Path>C:\Temp\FusionRunStart.%d.%t.html</Path>
+      <SendAsAttachment>False</SendAsAttachment>
+      <EnableReportGeneration>True</EnableReportGeneration>
+      <Sections>Tool Environment</Sections>
+    </ReportSettings>
+    <ReportSettings Name="Run Complete Detail">
+      <Title>Fusion Run: $(RunResult-&gt;RunState) - %d.%t on %s</Title>
+      <Path>C:\Temp\FusionRunCompleteDetail.%d.%t.html</Path>
+      <SendAsAttachment>False</SendAsAttachment>
+      <EnableReportGeneration>True</EnableReportGeneration>
+      <Sections>Tool Run Summary;Tool Run Stats Summary;Tool Environment;Non Passing Test List;Test Run List</Sections>
+    </ReportSettings>
+    <ReportSettings Name="Run Complete Summary">
+      <Title>Fusion Run: $(RunResult-&gt;RunState) - %d.%t on %s</Title>
+      <Path>C:\Temp\FusionRunCompleteSummary.%d.%t.html</Path>
+      <SendAsAttachment>False</SendAsAttachment>
+      <EnableReportGeneration>True</EnableReportGeneration>
+      <Sections>Tool Run Summary;Tool Run Stats Summary;Tool Environment;Non Passing Test List Summary</Sections>
+    </ReportSettings>
+    <ReportSettings Name="Test Start">
+      <Title>Fusion Test Start: $(Test-&gt;Name) - $(TestResult-&gt;StartDate)</Title>
+      <Path>C:\Temp\FusionTestStart.$(Test-&gt;Name).%d.%t.html</Path>
+      <SendAsAttachment>False</SendAsAttachment>
+      <EnableReportGeneration>True</EnableReportGeneration>
+      <Sections>Test Information;Tool Environment</Sections>
+    </ReportSettings>
+    <ReportSettings Name="Test Complete">
+      <Title>Fusion Test Complete: $(Test-&gt;Name) - $(TestResult-&gt;RunState) - $(TestResult-&gt;StartDate)</Title>
+      <Path>C:\Temp\FusionTestComplete.$(Test-&gt;Name).%d.%t.html</Path>
+      <SendAsAttachment>False</SendAsAttachment>
+      <EnableReportGeneration>True</EnableReportGeneration>
+      <Sections>Test Run Summary;Test Results Table;Test Information;Tool Environment</Sections>
+    </ReportSettings>
+    <ReportSettings Name="Test Result">
+      <Title>Fusion Test Result: $(Test-&gt;Name) - %d.%t</Title>
+      <Path>C:\Temp\FusionTestResult.$(Test-&gt;Name).%d.%t.html</Path>
+      <SendAsAttachment>False</SendAsAttachment>
+      <EnableReportGeneration>True</EnableReportGeneration>
+      <Sections>Test Result Entry Detail;Test Information;Test Results Table;Tool Environment</Sections>
+    </ReportSettings>
+    <ReportSettings Name="Test Collection Start">
+      <Title>Fusion Collection Start: $(Collection-&gt;Name) - $(CollectionResult-&gt;StartDate)</Title>
+      <Path>C:\Temp\FusionCollectionStart.$(Collection-&gt;Name).%d.%t.html</Path>
+      <SendAsAttachment>False</SendAsAttachment>
+      <EnableReportGeneration>True</EnableReportGeneration>
+      <Sections>Test Collection Information;Tool Environment</Sections>
+    </ReportSettings>
+    <ReportSettings Name="Test Collection Complete">
+      <Title>Fusion Collection Complete: $(Collection-&gt;Name) - $(CollectionResult-&gt;RunState)</Title>
+      <Path>C:\Temp\FusionCollectionStart.$(Collection-&gt;Name).%d.%t.html</Path>
+      <SendAsAttachment>False</SendAsAttachment>
+      <EnableReportGeneration>True</EnableReportGeneration>
+      <Sections>Test Collection Run Summary;Test Collection Summary Stats;Test Collection Information;Tool Environment;Test Collection Run List</Sections>
+    </ReportSettings>
+    <ReportSettings Name="WIT Defect">
+      <Title>WIT Defect: %d.%t</Title>
+      <Path>C:\Temp\FusionWitDefect.%d.%t.html</Path>
+      <SendAsAttachment>False</SendAsAttachment>
+      <EnableReportGeneration>True</EnableReportGeneration>
+      <Sections>Test Result Entry Detail;Test Information;Test Run Summary;Test Results Table;Tool Environment</Sections>
+    </ReportSettings>
+  </ReportManager>
+  <!--Assembly Search Directory List-->
+  <AssemblySearchDir>
+    <Dirs />
+  </AssemblySearchDir>
+  <!--Visa Device (Instrument) List-->
+  <VisaDevices />
+  <!--Custom Device List-->
+  <CustomDevices />
+  <!--Test System Component-->
+  <TestSystem>
+    <Automated>True</Automated>
+    <PauseAPIEnabled>False</PauseAPIEnabled>
+    <DisplayStackTrace>False</DisplayStackTrace>
+    <DebugAPIEnabled>False</DebugAPIEnabled>
+    <RaiseExceptionOnFailure>False</RaiseExceptionOnFailure>
+    <SpecLevel>Relaxed</SpecLevel>
+    <TestDegree>Standard</TestDegree>
+  </TestSystem>
+  <!--User Extension List-->
+  <Extensions />
+  <!--Test List Component-->
+  <Tests>
+    <RootTest />
+    <TestList>
+      <TestObject EngineType="MSTestAssembly">
+        <Header>
+          <Name>CuitDemoTP</Name>
+          <Path>C:\Program Files\Keysight\Fusion 4\Examples\Assembly Engines\Fusion\CuitCcvExamples\CuitDemoTP\bin\Debug\CuitDemoTP.dll</Path>
+        </Header>
+        <UniqueName>CuitDemoTP</UniqueName>
+        <UniqueId>f6cb2fd2-8c0e-8860-7f4e-ff58e168902a</UniqueId>
+        <Tests>
+          <TestObject EngineType="CodedUITestExtensionClass">
+            <Header>
+              <Name>CuitDemoTP.CodedUITest1</Name>
+              <Path>C:\Program Files\Keysight\Fusion 4\Examples\Assembly Engines\Fusion\CuitCcvExamples\CuitDemoTP\bin\Debug\CuitDemoTP.dll</Path>
+              <ClassName>CuitDemoTP.CodedUITest1</ClassName>
+            </Header>
+            <UniqueName>CuitDemoTP.CodedUITest1</UniqueName>
+            <UniqueId>e00ed4e6-3da5-c50d-8181-b8906f67a835</UniqueId>
+            <Tests>
+              <TestObject EngineType="MSTestMethod">
+                <Header>
+                  <Name>CSVDataTestMethod</Name>
+                  <Path>C:\Program Files\Keysight\Fusion 4\Examples\Assembly Engines\Fusion\CuitCcvExamples\CuitDemoTP\bin\Debug\CuitDemoTP.dll</Path>
+                  <ClassName>CuitDemoTP.CodedUITest1</ClassName>
+                </Header>
+                <ConnectionString>Data\SquareTestData.csv</ConnectionString>
+                <ProviderInvariantName>Microsoft.VisualStudio.TestTools.DataSource.CSV</ProviderInvariantName>
+                <TableName>SquareTestData#csv</TableName>
+                <IsDataDriven>True</IsDataDriven>
+                <UniqueName>CuitDemoTP.CodedUITest1.CSVDataTestMethod</UniqueName>
+                <UniqueId>f9139da8-421f-0195-b1f1-519a38ad2c9b</UniqueId>
+                <TestMetadata>
+                  <Metadata Key="TestLevel" Value="Unit" Type="Keysight.Fusion.Runtime.TestLevel, Keysight.Fusion.Runtime" />
+                </TestMetadata>
+              </TestObject>
+              <TestObject EngineType="MSTestMethod">
+                <Header>
+                  <Name>CSVDataTestMethod2</Name>
+                  <Path>C:\Program Files\Keysight\Fusion 4\Examples\Assembly Engines\Fusion\CuitCcvExamples\CuitDemoTP\bin\Debug\CuitDemoTP.dll</Path>
+                  <ClassName>CuitDemoTP.CodedUITest1</ClassName>
+                </Header>
+                <ConnectionString>Provider=Microsoft.Jet.OLEDB.4.0;User ID=admin;Password=;Data Source=Data\;Extended Properties="text;HDR=Yes;FMT=Delimited"</ConnectionString>
+                <ProviderInvariantName>System.Data.OleDb</ProviderInvariantName>
+                <TableName>SquareTestData#csv</TableName>
+                <IsDataDriven>True</IsDataDriven>
+                <UniqueName>CuitDemoTP.CodedUITest1.CSVDataTestMethod2</UniqueName>
+                <UniqueId>53ec39b7-79c8-e87c-a8cc-f1f722ee3379</UniqueId>
+                <TestMetadata>
+                  <Metadata Key="TestLevel" Value="Unit" Type="Keysight.Fusion.Runtime.TestLevel, Keysight.Fusion.Runtime" />
+                </TestMetadata>
+              </TestObject>
+              <TestObject EngineType="MSTestMethod">
+                <Header>
+                  <Name>XmlCuitTestMethod</Name>
+                  <Path>C:\Program Files\Keysight\Fusion 4\Examples\Assembly Engines\Fusion\CuitCcvExamples\CuitDemoTP\bin\Debug\CuitDemoTP.dll</Path>
+                  <ClassName>CuitDemoTP.CodedUITest1</ClassName>
+                </Header>
+                <ConnectionString>Data\SquareTestData.xml</ConnectionString>
+                <ProviderInvariantName>Microsoft.VisualStudio.TestTools.DataSource.XML</ProviderInvariantName>
+                <TableName>CUIT_DataDriveMethod</TableName>
+                <IsDataDriven>True</IsDataDriven>
+                <UniqueName>CuitDemoTP.CodedUITest1.XmlCuitTestMethod</UniqueName>
+                <UniqueId>eeb656e4-92bc-785c-1d18-1ef9604b00be</UniqueId>
+                <TestMetadata>
+                  <Metadata Key="TestLevel" Value="Unit" Type="Keysight.Fusion.Runtime.TestLevel, Keysight.Fusion.Runtime" />
+                </TestMetadata>
+              </TestObject>
+            </Tests>
+          </TestObject>
+          <TestObject EngineType="MSTestClass">
+            <Header>
+              <Name>CuitDemoTP.UnitTest1</Name>
+              <Path>C:\Program Files\Keysight\Fusion 4\Examples\Assembly Engines\Fusion\CuitCcvExamples\CuitDemoTP\bin\Debug\CuitDemoTP.dll</Path>
+              <ClassName>CuitDemoTP.UnitTest1</ClassName>
+            </Header>
+            <UniqueName>CuitDemoTP.UnitTest1</UniqueName>
+            <UniqueId>0c04d539-6bd3-c7cd-a96e-e2dece0b47ba</UniqueId>
+            <Tests>
+              <TestObject EngineType="MSTestMethod">
+                <Header>
+                  <Name>multiplyByTwoTest</Name>
+                  <Path>C:\Program Files\Keysight\Fusion 4\Examples\Assembly Engines\Fusion\CuitCcvExamples\CuitDemoTP\bin\Debug\CuitDemoTP.dll</Path>
+                  <ClassName>CuitDemoTP.UnitTest1</ClassName>
+                </Header>
+                <UniqueName>CuitDemoTP.UnitTest1.multiplyByTwoTest</UniqueName>
+                <UniqueId>8cfd64d9-ea4c-f2ba-ae4e-7da08e7d86c5</UniqueId>
+                <TestMetadata>
+                  <Metadata Key="TestLevel" Value="Unit" Type="Keysight.Fusion.Runtime.TestLevel, Keysight.Fusion.Runtime" />
+                </TestMetadata>
+              </TestObject>
+            </Tests>
+          </TestObject>
+        </Tests>
+      </TestObject>
+    </TestList>
+  </Tests>
+  <!--Application Preferences-->
+  <AppPreference>
+    <Preference Key="Email.CcAddress" Value="" Type="System.String" />
+    <Preference Key="Email.Enabled" Value="False" Type="System.Boolean" />
+    <Preference Key="Email.FromAddress" Value="fusion_result@keysight.com" Type="System.String" />
+    <Preference Key="Email.ReportManager.Title" Value="Fusion Test Run: %u@%s %d.%t" Type="System.String" />
+    <Preference Key="Email.SendAsAttachment" Value="False" Type="System.Boolean" />
+    <Preference Key="Email.SendOnComplete" Value="True" Type="System.Boolean" />
+    <Preference Key="Email.SendOnErrorFailure" Value="False" Type="System.Boolean" />
+    <Preference Key="Email.SMTPServer" Value="" Type="System.String" />
+    <Preference Key="Email.Subject" Value="Fusion Result: $(RunResult-&gt;RunState) - $(RunResult-&gt;StartDate)" Type="System.String" />
+    <Preference Key="Email.ToAddress" Value="" Type="System.String" />
+    <Preference Key="InstrumentDoctor.AbortRunIfRebootFails" Value="False" Type="System.Boolean" />
+    <Preference Key="InstrumentDoctor.ExpectedRebootTime" Value="30" Type="System.Int32" />
+    <Preference Key="InstrumentDoctor.GracePeriod" Value="90" Type="System.Int32" />
+    <Preference Key="InstrumentDoctor.InstrumentList" Value="" Type="System.String" />
+    <Preference Key="InstrumentDoctor.IsEnabled" Value="False" Type="System.Boolean" />
+    <Preference Key="InstrumentDoctor.PauseBeforeRebooting" Value="False" Type="System.Boolean" />
+    <Preference Key="InstrumentDoctor.RebootResourceName" Value="RPS10::1" Type="System.String" />
+    <Preference Key="InstrumentDoctor.RetryInterval" Value="5" Type="System.Int32" />
+    <Preference Key="LoggingPreferences" Serialized="True" Type="Keysight.Fusion.Logging.Serializer.LogManagerPreferences, Keysight.Fusion.Logging">
+      <LogManager xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+        <LogOutputs>
+          <LogOutputSerializer>
+            <OutputType>Keysight.Fusion.Logging.Output.DataTableLogOutput</OutputType>
+            <DataTableLogOutput>
+              <Name>Graphical Logging Output</Name>
+              <EnableCircularBuffer>false</EnableCircularBuffer>
+              <CircularBufferSize>200000</CircularBufferSize>
+              <SerializedFont>Tahoma, 8.5pt</SerializedFont>
+            </DataTableLogOutput>
+          </LogOutputSerializer>
+          <LogOutputSerializer>
+            <OutputType>Keysight.Fusion.Logging.Output.FileOutput</OutputType>
+            <FileOutput>
+              <LogState>false</LogState>
+              <Name>Dynamic Log File</Name>
+              <FileName>C:\Users\hongdeng\Documents\Fusion\Log_%u_%d_%t.txt</FileName>
+            </FileOutput>
+          </LogOutputSerializer>
+        </LogOutputs>
+        <LogInterfaces>
+          <LogInterfaceSerializer>
+            <Name>Fusion</Name>
+            <LogLevel>Debug2</LogLevel>
+            <LogState>true</LogState>
+            <Layout>{message}</Layout>
+          </LogInterfaceSerializer>
+          <LogInterfaceSerializer>
+            <Name>Test System</Name>
+            <LogLevel>Debug</LogLevel>
+            <LogState>true</LogState>
+            <Layout>{message}</Layout>
+          </LogInterfaceSerializer>
+          <LogInterfaceSerializer>
+            <Name>Fusion.Internal</Name>
+            <LogLevel>Info</LogLevel>
+            <LogState>true</LogState>
+            <Layout>{message}</Layout>
+          </LogInterfaceSerializer>
+          <LogInterfaceSerializer>
+            <Name>Fusion.Extension</Name>
+            <LogLevel>Info</LogLevel>
+            <LogState>true</LogState>
+            <Layout>{message}</Layout>
+          </LogInterfaceSerializer>
+          <LogInterfaceSerializer>
+            <Name>Toolbox Extension</Name>
+            <LogLevel>Debug2</LogLevel>
+            <LogState>true</LogState>
+            <Layout>{message}</Layout>
+          </LogInterfaceSerializer>
+          <LogInterfaceSerializer>
+            <Name>XML Result Exporter</Name>
+            <LogLevel>Debug2</LogLevel>
+            <LogState>true</LogState>
+            <Layout>{message}</Layout>
+          </LogInterfaceSerializer>
+        </LogInterfaces>
+        <Name>Fusion</Name>
+        <LogLevel>Debug2</LogLevel>
+        <LogState>true</LogState>
+      </LogManager>
+    </Preference>
+    <Preference Key="OFDDM.GenerateCsvFile" Value="False" Type="System.Boolean" />
+    <Preference Key="OFDDM.GenerateExcelFile" Value="False" Type="System.Boolean" />
+    <Preference Key="OFDDM.GenerateResultFile" Value="False" Type="System.Boolean" />
+    <Preference Key="OFDDM.GondorResultDirectory" Value="" Type="System.String" />
+    <Preference Key="OFDDM.IsEnabled" Value="False" Type="System.Boolean" />
+    <Preference Key="OFDDM.LocalCsvFile" Value="C:\temp\FusionActionResults_%u_%d_%t_%i.csv" Type="System.String" />
+    <Preference Key="OFDDM.LocalExcelFile" Value="C:\temp\FusionActionResults_%u_%d_%t_%i.xls" Type="System.String" />
+    <Preference Key="OFDDM.LocalResultFile" Value="C:\temp\FusionActionResults_%u_%d_%t_%i.xml" Type="System.String" />
+    <Preference Key="OFDDM.PADB.IsEnabled" Value="False" Type="System.Boolean" />
+    <Preference Key="OFDDM.PADB.LocalFile" Value="C:\temp\FusionActionResults_%u_%d_%t_%i.dbdif" Type="System.String" />
+    <Preference Key="OFDDM.PADB.OfficialDir" Value="" Type="System.String" />
+    <Preference Key="OFDDM.PADB.Publish" Value="False" Type="System.Boolean" />
+    <Preference Key="OFDDM.PublishResultFile" Value="False" Type="System.Boolean" />
+    <Preference Key="OFDDM.UniqueFiles" Value="False" Type="System.Boolean" />
+    <Preference Key="PortsManager.COM1.Baud" Value="115200" Type="System.String" />
+    <Preference Key="PortsManager.COM1.Model" Value="" Type="System.String" />
+    <Preference Key="PortsManager.COM10.Baud" Value="115200" Type="System.String" />
+    <Preference Key="PortsManager.COM10.Model" Value="" Type="System.String" />
+    <Preference Key="PortsManager.COM11.Baud" Value="115200" Type="System.String" />
+    <Preference Key="PortsManager.COM11.Model" Value="" Type="System.String" />
+    <Preference Key="PortsManager.COM12.Baud" Value="115200" Type="System.String" />
+    <Preference Key="PortsManager.COM12.Model" Value="" Type="System.String" />
+    <Preference Key="PortsManager.COM13.Baud" Value="115200" Type="System.String" />
+    <Preference Key="PortsManager.COM13.Model" Value="" Type="System.String" />
+    <Preference Key="PortsManager.COM14.Baud" Value="115200" Type="System.String" />
+    <Preference Key="PortsManager.COM14.Model" Value="" Type="System.String" />
+    <Preference Key="PortsManager.COM15.Baud" Value="115200" Type="System.String" />
+    <Preference Key="PortsManager.COM15.Model" Value="" Type="System.String" />
+    <Preference Key="PortsManager.COM16.Baud" Value="115200" Type="System.String" />
+    <Preference Key="PortsManager.COM16.Model" Value="" Type="System.String" />
+    <Preference Key="PortsManager.COM17.Baud" Value="115200" Type="System.String" />
+    <Preference Key="PortsManager.COM17.Model" Value="" Type="System.String" />
+    <Preference Key="PortsManager.COM18.Baud" Value="115200" Type="System.String" />
+    <Preference Key="PortsManager.COM18.Model" Value="" Type="System.String" />
+    <Preference Key="PortsManager.COM19.Baud" Value="115200" Type="System.String" />
+    <Preference Key="PortsManager.COM19.Model" Value="" Type="System.String" />
+    <Preference Key="PortsManager.COM2.Baud" Value="115200" Type="System.String" />
+    <Preference Key="PortsManager.COM20.Baud" Value="115200" Type="System.String" />
+    <Preference Key="PortsManager.COM20.Model" Value="" Type="System.String" />
+    <Preference Key="PortsManager.COM21.Baud" Value="115200" Type="System.String" />
+    <Preference Key="PortsManager.COM21.Model" Value="" Type="System.String" />
+    <Preference Key="PortsManager.COM22.Baud" Value="115200" Type="System.String" />
+    <Preference Key="PortsManager.COM22.Model" Value="" Type="System.String" />
+    <Preference Key="PortsManager.COM23.Baud" Value="115200" Type="System.String" />
+    <Preference Key="PortsManager.COM23.Model" Value="" Type="System.String" />
+    <Preference Key="PortsManager.COM24.Baud" Value="115200" Type="System.String" />
+    <Preference Key="PortsManager.COM24.Model" Value="" Type="System.String" />
+    <Preference Key="PortsManager.COM25.Baud" Value="115200" Type="System.String" />
+    <Preference Key="PortsManager.COM25.Model" Value="" Type="System.String" />
+    <Preference Key="PortsManager.COM26.Baud" Value="115200" Type="System.String" />
+    <Preference Key="PortsManager.COM26.Model" Value="" Type="System.String" />
+    <Preference Key="PortsManager.COM27.Baud" Value="115200" Type="System.String" />
+    <Preference Key="PortsManager.COM27.Model" Value="" Type="System.String" />
+    <Preference Key="PortsManager.COM28.Baud" Value="115200" Type="System.String" />
+    <Preference Key="PortsManager.COM28.Model" Value="" Type="System.String" />
+    <Preference Key="PortsManager.COM29.Baud" Value="115200" Type="System.String" />
+    <Preference Key="PortsManager.COM29.Model" Value="" Type="System.String" />
+    <Preference Key="PortsManager.COM3.Baud" Value="115200" Type="System.String" />
+    <Preference Key="PortsManager.COM3.Model" Value="" Type="System.String" />
+    <Preference Key="PortsManager.COM30.Baud" Value="115200" Type="System.String" />
+    <Preference Key="PortsManager.COM30.Model" Value="" Type="System.String" />
+    <Preference Key="PortsManager.COM31.Baud" Value="115200" Type="System.String" />
+    <Preference Key="PortsManager.COM31.Model" Value="" Type="System.String" />
+    <Preference Key="PortsManager.COM32.Baud" Value="115200" Type="System.String" />
+    <Preference Key="PortsManager.COM32.Model" Value="" Type="System.String" />
+    <Preference Key="PortsManager.COM33.Baud" Value="115200" Type="System.String" />
+    <Preference Key="PortsManager.COM33.Model" Value="" Type="System.String" />
+    <Preference Key="PortsManager.COM34.Baud" Value="115200" Type="System.String" />
+    <Preference Key="PortsManager.COM34.Model" Value="" Type="System.String" />
+    <Preference Key="PortsManager.COM35.Baud" Value="115200" Type="System.String" />
+    <Preference Key="PortsManager.COM35.Model" Value="" Type="System.String" />
+    <Preference Key="PortsManager.COM36.Baud" Value="115200" Type="System.String" />
+    <Preference Key="PortsManager.COM36.Model" Value="" Type="System.String" />
+    <Preference Key="PortsManager.COM37.Baud" Value="115200" Type="System.String" />
+    <Preference Key="PortsManager.COM37.Model" Value="" Type="System.String" />
+    <Preference Key="PortsManager.COM38.Baud" Value="115200" Type="System.String" />
+    <Preference Key="PortsManager.COM38.Model" Value="" Type="System.String" />
+    <Preference Key="PortsManager.COM39.Baud" Value="115200" Type="System.String" />
+    <Preference Key="PortsManager.COM39.Model" Value="" Type="System.String" />
+    <Preference Key="PortsManager.COM4.Baud" Value="115200" Type="System.String" />
+    <Preference Key="PortsManager.COM4.Model" Value="" Type="System.String" />
+    <Preference Key="PortsManager.COM40.Baud" Value="115200" Type="System.String" />
+    <Preference Key="PortsManager.COM40.Model" Value="" Type="System.String" />
+    <Preference Key="PortsManager.COM41.Baud" Value="115200" Type="System.String" />
+    <Preference Key="PortsManager.COM41.Model" Value="" Type="System.String" />
+    <Preference Key="PortsManager.COM42.Baud" Value="115200" Type="System.String" />
+    <Preference Key="PortsManager.COM42.Model" Value="" Type="System.String" />
+    <Preference Key="PortsManager.COM43.Baud" Value="115200" Type="System.String" />
+    <Preference Key="PortsManager.COM43.Model" Value="" Type="System.String" />
+    <Preference Key="PortsManager.COM44.Baud" Value="115200" Type="System.String" />
+    <Preference Key="PortsManager.COM44.Model" Value="" Type="System.String" />
+    <Preference Key="PortsManager.COM45.Baud" Value="115200" Type="System.String" />
+    <Preference Key="PortsManager.COM45.Model" Value="" Type="System.String" />
+    <Preference Key="PortsManager.COM46.Baud" Value="115200" Type="System.String" />
+    <Preference Key="PortsManager.COM46.Model" Value="" Type="System.String" />
+    <Preference Key="PortsManager.COM47.Baud" Value="115200" Type="System.String" />
+    <Preference Key="PortsManager.COM47.Model" Value="" Type="System.String" />
+    <Preference Key="PortsManager.COM48.Baud" Value="115200" Type="System.String" />
+    <Preference Key="PortsManager.COM48.Model" Value="" Type="System.String" />
+    <Preference Key="PortsManager.COM49.Baud" Value="115200" Type="System.String" />
+    <Preference Key="PortsManager.COM49.Model" Value="" Type="System.String" />
+    <Preference Key="PortsManager.COM5.Baud" Value="115200" Type="System.String" />
+    <Preference Key="PortsManager.COM5.Model" Value="" Type="System.String" />
+    <Preference Key="PortsManager.COM50.Baud" Value="115200" Type="System.String" />
+    <Preference Key="PortsManager.COM50.Model" Value="" Type="System.String" />
+    <Preference Key="PortsManager.COM51.Baud" Value="115200" Type="System.String" />
+    <Preference Key="PortsManager.COM51.Model" Value="" Type="System.String" />
+    <Preference Key="PortsManager.COM52.Baud" Value="115200" Type="System.String" />
+    <Preference Key="PortsManager.COM52.Model" Value="" Type="System.String" />
+    <Preference Key="PortsManager.COM53.Baud" Value="115200" Type="System.String" />
+    <Preference Key="PortsManager.COM53.Model" Value="" Type="System.String" />
+    <Preference Key="PortsManager.COM54.Baud" Value="115200" Type="System.String" />
+    <Preference Key="PortsManager.COM54.Model" Value="" Type="System.String" />
+    <Preference Key="PortsManager.COM55.Baud" Value="115200" Type="System.String" />
+    <Preference Key="PortsManager.COM55.Model" Value="" Type="System.String" />
+    <Preference Key="PortsManager.COM56.Baud" Value="115200" Type="System.String" />
+    <Preference Key="PortsManager.COM56.Model" Value="" Type="System.String" />
+    <Preference Key="PortsManager.COM57.Baud" Value="115200" Type="System.String" />
+    <Preference Key="PortsManager.COM57.Model" Value="QC 7200 HSPA Band 1" Type="System.String" />
+    <Preference Key="PortsManager.COM58.Baud" Value="115200" Type="System.String" />
+    <Preference Key="PortsManager.COM58.Model" Value="" Type="System.String" />
+    <Preference Key="PortsManager.COM59.Baud" Value="115200" Type="System.String" />
+    <Preference Key="PortsManager.COM59.Model" Value="" Type="System.String" />
+    <Preference Key="PortsManager.COM6.Baud" Value="115200" Type="System.String" />
+    <Preference Key="PortsManager.COM6.Model" Value="" Type="System.String" />
+    <Preference Key="PortsManager.COM60.Baud" Value="115200" Type="System.String" />
+    <Preference Key="PortsManager.COM61.Baud" Value="115200" Type="System.String" />
+    <Preference Key="PortsManager.COM62.Baud" Value="115200" Type="System.String" />
+    <Preference Key="PortsManager.COM63.Baud" Value="115200" Type="System.String" />
+    <Preference Key="PortsManager.COM64.Baud" Value="115200" Type="System.String" />
+    <Preference Key="PortsManager.COM65.Baud" Value="115200" Type="System.String" />
+    <Preference Key="PortsManager.COM66.Baud" Value="115200" Type="System.String" />
+    <Preference Key="PortsManager.COM67.Baud" Value="115200" Type="System.String" />
+    <Preference Key="PortsManager.COM68.Baud" Value="115200" Type="System.String" />
+    <Preference Key="PortsManager.COM69.Baud" Value="115200" Type="System.String" />
+    <Preference Key="PortsManager.COM7.Baud" Value="115200" Type="System.String" />
+    <Preference Key="PortsManager.COM7.Model" Value="" Type="System.String" />
+    <Preference Key="PortsManager.COM70.Baud" Value="115200" Type="System.String" />
+    <Preference Key="PortsManager.COM71.Baud" Value="115200" Type="System.String" />
+    <Preference Key="PortsManager.COM72.Baud" Value="115200" Type="System.String" />
+    <Preference Key="PortsManager.COM73.Baud" Value="115200" Type="System.String" />
+    <Preference Key="PortsManager.COM8.Baud" Value="115200" Type="System.String" />
+    <Preference Key="PortsManager.COM8.Model" Value="" Type="System.String" />
+    <Preference Key="PortsManager.COM9.Baud" Value="115200" Type="System.String" />
+    <Preference Key="PortsManager.COM9.Model" Value="" Type="System.String" />
+    <Preference Key="PortsManager.Enabled" Value="False" Type="System.Boolean" />
+    <Preference Key="SAReleaseProc.DisplayModalErrorMessagesForConditionalWarnings" Value="True" Type="System.Boolean" />
+    <Preference Key="SAReleaseProc.EnableConditionalFolderParameters" Value="True" Type="System.Boolean" />
+    <Preference Key="SAReleaseProc.PauseSuiteOnErrorOrFailure" Value="True" Type="System.Boolean" />
+    <Preference Key="TeamFoundationExtension.AutoPublishTestResult" Value="False" Type="System.Boolean" />
+    <Preference Key="TeamFoundationExtension.AutoSyncTestPlan" Value="False" Type="System.Boolean" />
+    <Preference Key="TeamFoundationExtension.BuildNumber" />
+    <Preference Key="TeamFoundationExtension.ConfigurationId" Value="0" Type="System.Int32" />
+    <Preference Key="TeamFoundationExtension.ConfigurationName" />
+    <Preference Key="TeamFoundationExtension.CreateMissingTestPlan" Value="True" Type="System.Boolean" />
+    <Preference Key="TeamFoundationExtension.CreateMissingTests" Value="True" Type="System.Boolean" />
+    <Preference Key="TeamFoundationExtension.RemoveExtraTests" Value="False" Type="System.Boolean" />
+    <Preference Key="TeamFoundationExtension.TestPlanId" Value="0" Type="System.Int32" />
+    <Preference Key="TeamFoundationExtension.TestPlanName" />
+    <Preference Key="TeamFoundationExtension.TfsDefaultItemType" Value="Defect" Type="System.String" />
+    <Preference Key="TeamFoundationExtension.TfsProject" />
+    <Preference Key="TeamFoundationExtension.TfsServer" />
+    <Preference Key="TeamFoundationExtension.TfsServerUri" Value="http://tfs.it.keysight.com:8080" Type="System.Uri" />
+    <Preference Key="TestifyDBClient.Database" Value="" Type="System.String" />
+    <Preference Key="TestifyDBClient.Enabled" Value="False" Type="System.Boolean" />
+    <Preference Key="TestifyDBClient.NoteRuleEnabled" Value="False" Type="System.Boolean" />
+    <Preference Key="TestifyDBClient.Server" Value="testify1.soco.agilent.com" Type="System.String" />
+    <Preference Key="TestifySOSExtension.ComputerDiagnosticsReport" Value="False" Type="System.Boolean" />
+    <Preference Key="TestifySOSExtension.DestinationFile" Value="\\beryl\testify\CrashImages" Type="System.String" />
+    <Preference Key="TestifySOSExtension.DisplayScreenCapture" Value="False" Type="System.Boolean" />
+    <Preference Key="TestifySOSExtension.EmailFrom" Value="xiaofeng" Type="System.String" />
+    <Preference Key="TestifySOSExtension.EmailPriority" Value="Normal" Type="System.Net.Mail.MailPriority" />
+    <Preference Key="TestifySOSExtension.EMailServer" Value="srmail.soco.agilent.com" Type="System.String" />
+    <Preference Key="TestifySOSExtension.EmailSubject" Value="SOS Totals" Type="System.String" />
+    <Preference Key="TestifySOSExtension.EnableAlignmentHistoryScraper" Value="False" Type="System.Boolean" />
+    <Preference Key="TestifySOSExtension.GenerateNoteReport" Value="False" Type="System.Boolean" />
+    <Preference Key="TestifySOSExtension.HistoryTracker" Value="False" Type="System.Boolean" />
+    <Preference Key="TestifySOSExtension.Instrument" Value="SA" Type="System.String" />
+    <Preference Key="TestifySOSExtension.MaskingEnabled" Value="False" Type="System.Boolean" />
+    <Preference Key="TestifySOSExtension.NoteRuleDatabase" Value="WBU_Testify" Type="System.String" />
+    <Preference Key="TestifySOSExtension.NoteRuleServer" Value="SEPWEB" Type="System.String" />
+    <Preference Key="TestifySOSExtension.PCName" Value="" Type="System.String" />
+    <Preference Key="TestifySOSExtension.ProcessName" Value="Agilent.SA.xSA" Type="System.String" />
+    <Preference Key="TestifySOSExtension.PsExecExe" Value="\\beryl\testify\2.0\Tests\Utilities\PsTools\psexec.exe" Type="System.String" />
+    <Preference Key="TestifySOSExtension.RebootResourceName" Value="RPS10::1" Type="System.String" />
+    <Preference Key="TestifySOSExtension.RedirectMessageBoxesToEventLog" Value="False" Type="System.Boolean" />
+    <Preference Key="TestifySOSExtension.ReportOrphansAsErrors" Value="False" Type="System.Boolean" />
+    <Preference Key="TestifySOSExtension.RetrieveEventLogMessages" Value="False" Type="System.Boolean" />
+    <Preference Key="TestifySOSExtension.RetrieveOrphanDUTErrors" Value="False" Type="System.Boolean" />
+    <Preference Key="TestifySOSExtension.SADoctorAbortSuiteIfRebootFails" Value="True" Type="System.Boolean" />
+    <Preference Key="TestifySOSExtension.SADoctorExpectedRebootTime" Value="30" Type="System.Int32" />
+    <Preference Key="TestifySOSExtension.SADoctorGracePeriod" Value="90" Type="System.Int32" />
+    <Preference Key="TestifySOSExtension.SADoctorPauseBeforeRebooting" Value="False" Type="System.Boolean" />
+    <Preference Key="TestifySOSExtension.SADoctorRebootEnabled" Value="False" Type="System.Boolean" />
+    <Preference Key="TestifySOSExtension.SADoctorRetryInterval" Value="5" Type="System.Int32" />
+    <Preference Key="TestifySOSExtension.ScreenCaptureExe" Value="\\beryl\testify\2.0\Tests\Utilities\ScreenCapture\ScreenCapture.exe" Type="System.String" />
+    <Preference Key="TestifySOSExtension.ScreenCaptureOutputFolder" Value="C:\Temp\" Type="System.String" />
+    <Preference Key="TestifySOSExtension.SosAssemblyPath" Value="\\beryl.soco.agilent.com\Testify\4.0\SOS\Agilent.Epsg.Wbu.Sad.Sos.dll" Type="System.String" />
+    <Preference Key="TestifySOSExtension.TransitionScpi" Value="# EXAMPLE;#;# USING SS;# *RST;# USING SA;# *RST;# SWE:TIME 10 s;# :INIT:IMM;*OPC?;# TRACE:DATA? TRACE1" Type="System.String[]" />
+    <Preference Key="TestifySOSExtension.TrapStop" Value="False" Type="System.Boolean" />
+    <Preference Key="TestifySOSExtension.UserLogin" Value="agilent\sadtester" Type="System.String" />
+    <Preference Key="TestifySOSExtension.UserPassword" Value="1qaz2wsX" Type="System.String" />
+    <Preference Key="TestifySOSExtension.UseWindowsCounterSpy" Value="False" Type="System.Boolean" />
+    <Preference Key="TestifySOSExtension.UseWindowsScreenCapture" Value="False" Type="System.Boolean" />
+    <Preference Key="TestResultStorage.ConnectionType" Value="Direct" Type="Keysight.Fusion.Data.DataConnectionType, Keysight.Fusion.Data" />
+    <Preference Key="TestResultStorage.Database" Value="" Type="System.String" />
+    <Preference Key="TestResultStorage.Enabled" Value="False" Type="System.Boolean" />
+    <Preference Key="TestResultStorage.NoteRuleEnabled" Value="False" Type="System.Boolean" />
+    <Preference Key="TestResultStorage.QueueTestResults" Value="False" Type="System.Boolean" />
+    <Preference Key="TestResultStorage.Server" Value="fusiondb.srs.is.keysight.com" Type="System.String" />
+    <Preference Key="TestResultStorage.SqlLoggingEnabled" Value="False" Type="System.Boolean" />
+    <Preference Key="TestResultStorage.StartQueueReaderAutomatically" Value="True" Type="System.Boolean" />
+    <Preference Key="ToolboxExt.AbortErrorLimit" Value="0" Type="System.Int32" />
+    <Preference Key="ToolboxExt.AbortFailureLimit" Value="0" Type="System.Int32" />
+    <Preference Key="ToolboxExt.AbortMessageRexEx" />
+    <Preference Key="ToolboxExt.AbortOnErrorLimit" Value="0" Type="System.Int32" />
+    <Preference Key="ToolboxExt.AbortOnFailureLimit" Value="0" Type="System.Int32" />
+    <Preference Key="ToolboxExt.AbortOnMessageRexEx" />
+    <Preference Key="ToolboxExt.AbortOnResult" Value="False" Type="System.Boolean" />
+    <Preference Key="ToolboxExt.AbortOnSkipLimit" Value="0" Type="System.Int32" />
+    <Preference Key="ToolboxExt.AbortSkipLimit" Value="0" Type="System.Int32" />
+    <Preference Key="ToolboxExt.GCOnTestCollectionComplete" Value="False" Type="System.Boolean" />
+    <Preference Key="ToolboxExt.GCOnTestComplete" Value="False" Type="System.Boolean" />
+    <Preference Key="ToolboxExt.KillSwitchEnabled" Value="False" Type="System.Boolean" />
+    <Preference Key="ToolboxExt.KillTimeHours" Value="-1" Type="System.Double" />
+    <Preference Key="ToolboxExt.MaskEnabled" Value="False" Type="System.Boolean" />
+    <Preference Key="ToolboxExt.MaskMessagePattern" />
+    <Preference Key="ToolboxExt.ShowTestSystemAfterTest" Value="False" Type="System.Boolean" />
+    <Preference Key="ToolboxExt.ShowTestSystemAfterTestCollection" Value="False" Type="System.Boolean" />
+    <Preference Key="ToolboxExt.TrapEnabled" Value="False" Type="System.Boolean" />
+    <Preference Key="ToolboxExt.TrapMessagePattern" />
+    <Preference Key="ToolboxExt.TrapPause" Value="False" Type="System.Boolean" />
+    <Preference Key="ToolboxExt.TxtExportEnabled" Value="False" Type="System.Boolean" />
+    <Preference Key="ToolboxExt.TxtExportFile" />
+    <Preference Key="VisaDeviceUtility.AutoAddress.IsEnabled" Value="False" Type="System.Boolean" />
+    <Preference Key="VisaDeviceUtility.AutoClear.IsEnabled" Value="False" Type="System.Boolean" />
+    <Preference Key="VisaDeviceutility.AutoClear.ReportAsErrors" Value="False" Type="System.Boolean" />
+    <Preference Key="VisaDeviceUtility.AutoClear.ReportAsErrors" Value="False" Type="System.Boolean" />
+    <Preference Key="VisaDeviceUtility.AutoUUT.Address" Value="" Type="System.String" />
+    <Preference Key="VisaDeviceUtility.AutoUUT.IsEnabled" Value="False" Type="System.Boolean" />
+    <Preference Key="VisaDeviceUtility.AutoUUT.Key" Value="" Type="System.String" />
+    <Preference Key="VisaDeviceUtility.AutoUUT.UseExisting" Value="True" Type="System.Boolean" />
+    <Preference Key="VisaDeviceutility.DUTMiner.Enabled" Value="False" Type="System.Boolean" />
+    <Preference Key="VisaDeviceUtility.DUTMiner.Enabled" Value="False" Type="System.Boolean" />
+    <Preference Key="VisaDeviceUtility.DUTMinor.Enabled" Value="False" Type="System.Boolean" />
+    <Preference Key="VisaDeviceUtility.InstrumentInfo.Key" />
+    <Preference Key="VisaDeviceUtility.InstrumentInfo.Set" />
+    <Preference Key="VisaDeviceUtility.IsEnabled" Value="False" Type="System.Boolean" />
+    <Preference Key="VisaDeviceUtility.TmoErrorTrapEnabled" Value="False" Type="System.Boolean" />
+    <Preference Key="VisaDeviceUtility.TransSCPI.File" />
+    <Preference Key="VisaDeviceUtility.TransSCPI.IsEnabled" Value="False" Type="System.Boolean" />
+    <Preference Key="VisaDeviceutility.TransSCPI.IsEnaled" Value="False" Type="System.Boolean" />
+    <Preference Key="VisaDeviceUtility.TransSCPI.IsEnaled" Value="False" Type="System.Boolean" />
+    <Preference Key="VisaDeviceUtility.TransSCPI.String" />
+    <Preference Key="WindowsOS.Ext.CounterSpy.Enabled" Value="False" Type="System.Boolean" />
+    <Preference Key="WindowsOS.Ext.CounterSpy.ProcessName" Value="Fusion.exe" Type="System.String" />
+    <Preference Key="WindowsOS.Ext.EventLogExtracter.Enabled" Value="False" Type="System.Boolean" />
+    <Preference Key="WindowsOS.Ext.PCName" Value="localhost" Type="System.String" />
+    <Preference Key="WindowsOS.Ext.PSExecPath" Value="C:\PsTools\PsExec.exe" Type="System.String" />
+    <Preference Key="WindowsOS.Ext.ScreenCapture.CaptureExe" Value="C:\Program Files\Keysight\Fusion 4\ScreenCapture.exe" Type="System.String" />
+    <Preference Key="WindowsOS.Ext.ScreenCapture.DestinationDir" Value="C:\temp\ScreenCaptures" Type="System.String" />
+    <Preference Key="WindowsOS.Ext.ScreenCapture.DutKey" />
+    <Preference Key="WindowsOS.Ext.ScreenCapture.Enabled" Value="False" Type="System.Boolean" />
+    <Preference Key="WindowsOS.Ext.ShowPCDiags" Value="False" Type="System.Boolean" />
+    <Preference Key="XmlResultExporter.DeploymentDirectory" Value="C:\temp\%u_%s_%d_%t" Type="System.String" />
+    <Preference Key="XmlResultExporter.Enabled" Value="False" Type="System.Boolean" />
+    <Preference Key="XmlResultExporter.File" Value="" Type="System.String" />
+    <Preference Key="XmlResultExporter.GenerateCondition" Value="RunCompleted" Type="Keysight.Fusion.Extension.XmlResultExporter.GenerateConditionEnum, Keysight.Fusion.Extension.XmlResultExporter" />
+    <Preference Key="XmlResultExporter.GenerateMultiple" Value="False" Type="System.Boolean" />
+    <Preference Key="XmlResultExporter.Publish" Value="False" Type="System.Boolean" />
+    <Preference Key="XmlResultExporter.TfsSchemaVersion" Value="VS2010" Type="Keysight.Fusion.Extension.XmlResultExporter.TfsSchemaVersion, Keysight.Fusion.Extension.XmlResultExporter" />
+    <Preference Key="XmlResultExporter.Title" Value="" Type="System.String" />
+  </AppPreference>
+  <Rules />
+  <TriggerActions>
+    <Triggers />
+  </TriggerActions>
+</Scenario>
